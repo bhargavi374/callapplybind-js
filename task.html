@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button>Click Me</button>
+    <script>
+        //task 1
+        const person = {
+            name: "shruthi",
+            sayHello: function () {
+                console.log(this.name)
+            }
+        }
+        person.sayHello();
+
+        //task 2
+
+        const calculator = {
+            value: 10,
+            add: function () {
+                console.log(this.value + 5)
+            },
+            subtract: () => {
+                console.log(this.value)
+                console.log(this.value - 5)
+            }
+        }
+        calculator.add();
+        calculator.subtract();
+
+        //task 3
+
+        const btn = document.getElementsByTagName("button")[0];
+        // btn.addEventListener("click",()=>{
+        //     console.log(this.textContent)
+        // })
+        btn.addEventListener("click", function () {
+            console.log(this.textContent)
+        })
+
+        //task 4
+
+        const car = {
+            startEngine: function (b) {
+                console.log(`Starting the engine of ${this.brand}`)
+            }
+        }
+
+        const bike = {
+            brand: "R15"
+        }
+
+        car.startEngine.call(bike, "R15");
+
+        //task 5
+
+        const mathOperations = {
+            sum: function (a, b) {
+                console.log(`Sum = ${a + b}`);
+            }
+        }
+        const arr = [5, 10];
+        mathOperations.sum.apply(arr, [5, 10]);
+
+        //task 6
+
+        const counter = {
+            count: 0,
+            increment: function () {
+                this.count++;
+                console.log(this.count);
+            }
+        }
+
+        const boundvar = counter.increment.bind(counter);
+        console.log(boundvar())
+
+        //task 7
+
+        const timer = {
+            name: "John",
+            start: function (a) {
+                setTimeout(() => {
+                    console.log(`${this.name} started! after 2 seconds`)
+                }, 2000)
+            }
+        }
+        const obj2 = {
+            name: "Alice"
+        }
+
+        const boundVar = timer.start.bind(timer);
+        console.log(boundVar());
+        const boundVar1 = timer.start.bind(obj2, "name");
+        console.log(boundVar1())
+
+        //task 8
+
+        const rectangle = {
+            length: 10,
+            width: 5
+        }
+        const circle = {
+            radius: 8
+        }
+
+        function calculateArea() {
+            if (this.length && this.width) {
+                const rectArea = this.length * this.width;
+                console.log(`Area of rectangle = ${rectArea}`);
+            }
+            if (this.radius) {
+                const circleArea = 3.14 * this.radius * this.radius;
+                console.log(`Area of circle = ${circleArea}`);
+            }
+
+        }
+
+        calculateArea.call(rectangle);
+        calculateArea.call(circle);
+
+        //task 9
+
+        const employee = {
+            name: "John",
+            designation: "Software",
+            introduce: function () {
+                console.log(`Hi, I am ${this.name},a ${this.designation}`);
+            }
+        }
+        const obj1 = {
+            name: "Alice",
+            designation: "doctor"
+        }
+        const obj3 = {
+            name: "Bob",
+            designation: "Tech"
+        }
+
+        employee.introduce.call(obj1);
+        employee.introduce.call(obj3)
+
+        const method = employee.introduce;
+        const method1 = method.bind(obj1);
+        console.log(method1())
+        const method2 = method.bind(obj3);
+        console.log(method2())
+
+    </script>
+</body>
+
+</html>
+
+
